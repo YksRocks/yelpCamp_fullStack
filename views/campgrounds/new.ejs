@@ -1,0 +1,108 @@
+<% layout('layouts/boilerplate') %>
+<div class="row">
+  <h1 class="text-center">New Campground</h1>
+  <div class="col-6 offset-3">
+    <form
+      action="/campgrounds"
+      method="post"
+      novalidate
+      class="validated-form"
+      enctype="multipart/form-data"
+    >
+      <div class="mb-3">
+        <label for="title" class="form-label">Title :</label>
+        <input
+          type="text"
+          class="form-control"
+          name="campground[title]"
+          id="title"
+          placeholder="Enter Title"
+          required
+        />
+        <div class="valid-feedback">Looks good!</div>
+        <div id="validationServer05Feedback" class="invalid-feedback">
+          Please provide a title.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="location" class="form-label">Location :</label>
+        <input
+          type="text"
+          name="campground[location]"
+          id="location"
+          placeholder="Enter Location"
+          class="form-control"
+          required
+        />
+        <div class="valid-feedback">Looks good!</div>
+        <div id="validationServer05Feedback" class="invalid-feedback">
+          Please provide a location.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="price" class="form-label">Price :</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">$</span>
+          <input
+            type="number"
+            name="campground[price]"
+            id="price"
+            placeholder="0"
+            class="form-control"
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
+          <div id="validationServer05Feedback" class="invalid-feedback">
+            Please provide a price.
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="mb-3">
+        <label for="image" class="form-label">Image URL :</label>
+        <input
+          type="text"
+          name="campground[image]"
+          id="image"
+          placeholder="Enter image URL"
+          class="form-control"
+          required
+        />
+        <div class="valid-feedback">Looks good!</div>
+        <div id="validationServer05Feedback" class="invalid-feedback">
+          Please provide a image url.
+        </div>
+      </div> -->
+      <div class="mb-3">
+        <label for="description" class="form-label">Description :</label>
+        <textarea
+          name="campground[description]"
+          id="description"
+          placeholder="Enter Description"
+          class="form-control"
+          cols="30"
+          rows="2"
+          required
+        ></textarea>
+        <div class="valid-feedback">Looks good!</div>
+        <div id="validationServer05Feedback" class="invalid-feedback">
+          Please provide a description.
+        </div>
+      </div>
+      <div class="mb-3 custom-file">
+        <label for="image" class="form-label custom-file-label"
+          >Choose Images :</label
+        >
+        <input
+          class="form-control"
+          type="file"
+          id="image"
+          name="image"
+          multiple
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  <a class="text-center" href="/campgrounds">Cancle</a>
+</div>
