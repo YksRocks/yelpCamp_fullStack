@@ -19,13 +19,18 @@ module.exports.createCampground = async (req, res) => {
       .forwardGeocode({ query: req.body.campground.location, limit: 1 })
       .send();
     const campground = new Campground(req.body.campground);
+    console.log("hi");
     campground.geometry = geoData.body.features[0].geometry;
+    console.log("hii");
     campground.images = req.files.map((f) => ({
       url: f.path,
       filename: f.filename,
     }));
+    console.log("hiii");
     campground.author = req.user._id;
+    console.log("hiiio");
     await campground.save();
+    console.log("hiiiop");
     console.log(campground);
     req.flash("success", "Successfully created a new campgrounds");
     res.redirect(`/campgrounds/${campground._id}`);
