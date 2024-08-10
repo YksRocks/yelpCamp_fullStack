@@ -14,6 +14,9 @@ module.exports.renderNewForm = (req, res) => {
 };
 
 module.exports.createCampground = async (req, res) => {
+  console.log(process.env.CLOUDINARY_CLOUD_NAME)
+console.log(process.env.CLOUDINARY_KEY)
+console.log(process.env.CLOUDINARY_SECRET)
   const geoData = await geocoder
     .forwardGeocode({ query: req.body.campground.location, limit: 1 })
     .send();
