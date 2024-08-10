@@ -14,23 +14,24 @@ module.exports.renderNewForm = (req, res) => {
 };
 
 module.exports.createCampground = async (req, res) => {
-  console.log(process.env.CLOUDINARY_CLOUD_NAME)
-console.log(process.env.CLOUDINARY_KEY)
-console.log(process.env.CLOUDINARY_SECRET)
-  const geoData = await geocoder
-    .forwardGeocode({ query: req.body.campground.location, limit: 1 })
-    .send();
-  const campground = new Campground(req.body.campground);
-  campground.geometry = geoData.body.features[0].geometry;
-  campground.images = req.files.map((f) => ({
-    url: f.path,
-    filename: f.filename,
-  }));
-  campground.author = req.user._id;
-  await campground.save();
-  console.log(campground);
-  req.flash("success", "Successfully created a new campgrounds");
-  res.redirect(`/campgrounds/${campground._id}`);
+  try{
+    const geoData = await geocoder
+      .forwardGeocode({ query: req.body.campground.location, limit: 1 })
+      .send();
+    const campground = new Campground(req.body.campground);
+    campground.geometry = geoData.body.features[0].geometry;
+    campground.images = req.files.map((f) => ({
+      url: f.path,
+      filename: f.filename,
+    }));
+    campground.author = req.user._id;
+    await campground.save();
+    console.log(campground);
+    req.flash("success", "Successfully created a new campgrounds");
+    res.redirect(`/campgrounds/${campground._id}`);
+  }catch(error){
+    console.log(error);
+  }
 };
 
 module.exports.showCampground = async (req, res) => {
